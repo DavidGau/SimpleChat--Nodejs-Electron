@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Simple Chat | Crée un lobby</title>
+	<meta charset="utf-8"/>
+</head>
+<body>
+	<form>
+		<input type="text" id="name"/>
+		<input type="submit" id="submit"/>
+	</form>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.dev.js"></script>
+	<script>
+		let socket = io.connect("http://localhost:3000/lobby_list");
+		let key = sessionStorage.getItem("key");
+
+		let submit = document.getElementById("submit");
+		let name = document.getElementById("name");
+
+		submit.addEventListener("click",function(e){
+			e.preventDefault();
+
+			socket.emit("add_lobby",key,name.value);
+
+			name.value = "";
+			document.location.href = "lobby_list.html";
+		},false);
+	</script>
+</body>
+</html>

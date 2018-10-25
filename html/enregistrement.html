@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Simple-tchat | Enregistrement</title>
+	<meta charset="utf-8"/>
+</head>
+<body>
+	<form>
+		<input type="text" id="nickname" placeholder="pseudo"/>
+		<input type="password" id="password1" placeholder="password"/>
+		<input type="password" id="password2" placeholder="Retype password"/>
+		<input type="submit" id="submit"/>
+	</form>
+	<a href="./connexion.html" title="Connexion">Vers la page connexion</a>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.dev.js"></script>
+	<script>
+		console.log("loaded");
+		let socket = io.connect("http://localhost:3000/register");
+		let nickname = document.getElementById("nickname");
+		let password1 = document.getElementById("password1");
+		let password2 = document.getElementById("password2");
+		let submit = document.getElementById("submit");
+
+
+		//Reinforced security check here
+		submit.addEventListener("click",function(e){
+
+			e.preventDefault();
+
+			socket.emit("register",nickname.value,password1.value); //Envoi des infos au serveur pour vérifier si bonnes
+
+			nickname.value = "";
+			password1.value = "";
+			password2.value = "";
+		},false);
+
+		socket.on("registered",function(answer){
+			if(answer){
+				document.location.href = "connexion.html";
+			}
+			else{
+				//Traiter ici
+			}
+		});
+
+		
+	</script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Simple Chat | Liste des lobby</title>
+	<meta charset="utf-8"/>
+</head>
+<body>
+	<ul>
+	</ul>
+	<a href="create_lobby.html">Crée un lobby</a>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.dev.js"></script>
+	<script>
+		let socket = io.connect("http://localhost:3000/lobby_list");
+		let key = sessionStorage.getItem("key");
+
+		let ul = document.getElementsByTagName("ul")[0];
+
+		socket.emit("key",key);
+
+
+		//Chargement de la liste des lobby
+		socket.on("list",function(result){
+
+			result.forEach(function(el){
+				let a = document.createElement("a");
+				a.href = "in_lobby.html?Id=" + el.Id;
+				a.innerHTML = el.name;
+
+				let li = document.createElement("li");
+				li.append(a);
+
+				ul.append(li);
+			});
+
+		});
+
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+{
+  "name": "chatv2",
+  "version": "2.0.0",
+  "description": "Un système de tchat développer en HTML,CSS,JS (Electron) ainsi que NodeJS. Le but est simple: Reproduire un semblant de TeamSpeak (sans la voix).",
+  "main": "window.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron ."
+  },
+  "author": "David Gaulin",
+  "license": "ISC",
+  "dependencies": {
+    "electron": "^3.0.5",
+    "electron-reload": "^1.2.5",
+    "mysql": "^2.16.0",
+    "password-hash": "^1.2.2",
+    "socket.io": "^2.1.1",
+    "uuid4": "^1.1.4"
+  }
+}

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Simple Chat | En cours...</title>
+	<meta charset="utf-8"/>
+</head>
+<body>
+	<h1 id="lobby_title">Titre du lobby</h1>
+	<p id="connected_list">Liste des personnes connectés</p>
+	<div id="message_container">
+	
+	</div>
+	<a href="lobby_list.html">Retourner à la liste des lobby</a>
+	<textarea id="textbox"></textarea>
+	<button id="submit">Envoi</button>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.dev.js"></script>
+	<script>
+		let socket = io.connect("http://localhost:3000/in_lobby");
+		let key = sessionStorage.getItem("key");
+
+		let title = document.getElementById("lobby_title");
+		let connected_list = document.getElementById("connected_list");
+		let message_container = document.getElementById("message_container");
+		let textbox = document.getElementById("textbox");
+		let submit = document.getElementById("submit");
+
+		let lobby_id = new URLSearchParams(window.location.search);
+		lobby_id = lobby_id.get("Id");
+
+		submit.addEventListener("click",function(e){
+			e.preventDefault();
+			socket.emit("send_message",key,textbox.value);
+		},false);
+
+		
+		socket.emit("changed_lobby",key,lobby_id);
+
+		submit.addEventListener("click",function(e){
+			e.preventDefault();
+		},false);
+
+
+		socket.on("title",function(result){
+			title.innerHTML = result[0].Name;
+		});
+
+		socket.on("member_list",function(result){
+
+			let str = '';
+
+			for(let i = 0;i < result.length;i++)
+			{
+				str += ' | ' + result[i] + ' | ';
+			}
+
+			connected_list.innerHTML = str;
+		});
+
+		socket.on("message",function(result){
+			result.forEach(function(el){
+				let p = document.createElement("p");
+				p.innerHTML = "<strong>" + el.nickname + "</strong>: " + el.message;
+
+				message_container.append(p);
+			});
+		});
+
+
+	</script>	
+</body>
+</html>
