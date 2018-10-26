@@ -3,11 +3,21 @@
 <head>
 	<title>Simple Chat | Liste des lobby</title>
 	<meta charset="utf-8"/>
+	<link rel="stylesheet" type="text/css" href="../css/style_header_footer.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/style_lobby_list.css"/>
+	<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
 </head>
 <body>
+	<header>
+		<h1>Liste des lobby</h1>
+		<p>Simple Chat</p>
+	</header>
 	<ul>
 	</ul>
-	<a href="create_lobby.html">Crée un lobby</a>
+	<footer>
+		<a href="create_lobby.html">Crée un lobby</a>
+	</footer>
+
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.dev.js"></script>
 	<script>
 		let socket = io.connect("http://localhost:3000/lobby_list");

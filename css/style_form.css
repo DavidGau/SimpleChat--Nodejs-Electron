@@ -1,0 +1,26 @@
+form input{
+	display: block;
+	width:80%;
+	margin:auto;
+	height:52px;
+	border-radius: 50px;
+	border:0;
+	outline:0;
+	margin-top:35px;
+	font-size:35px;
+	padding-left: 20px;
+	font-family: "Lato", sans-serif;
+}
+
+form input[type=submit]{
+	width:60%;
+	border-radius: 20px;
+	background-color: #26B8A3;
+	color:#F6F6F6;
+	border-bottom:3px solid #007a61;
+	cursor:pointer;
+}
+
+form input[type=submit]:active{
+	border:0;
+}

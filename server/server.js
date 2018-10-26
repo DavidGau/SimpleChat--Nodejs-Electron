@@ -28,6 +28,7 @@ setInterval(function(){
 	console.log("NB de personnes sur l'app: " + connection.server_session.length);
 
 },10000);
+
 //Namespace pour l'enregistrement de compte
 register_nsp.on("connection",function(socket){
 	

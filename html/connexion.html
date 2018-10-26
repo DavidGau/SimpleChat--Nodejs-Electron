@@ -3,15 +3,25 @@
 <head>
 	<title>Simple Chat | Connexion</title>
 	<meta charset="utf-8"/>
+	<link rel="stylesheet" type="text/css" href="../css/style_form.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/style_header_footer.css"/>
+	<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
 </head>
 <body>
-	<form>
-		<input type="text" id="name" placeholder="Pseudo"/>
-		<input type="password" id="password" placeholder="Password"/>
-		<input type="submit" id="submit"/>
-	</form>
-
-	<a href="./enregistrement.html" title="Enregistrement">Vers la page enregistrement</a>
+	<header>
+		<h1>Connexion</h1>
+		<p>Simple Chat</p>
+	</header>
+	<section>
+		<form>
+			<input type="text" id="name" placeholder="Pseudo"/>
+			<input type="password" id="password" placeholder="Password"/>
+			<input type="submit" id="submit"/>
+		</form>	
+	</section>
+	<footer>
+		<a href="./enregistrement.html" title="Enregistrement">Vers la page enregistrement</a>
+	</footer>
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.dev.js"></script>
 	<script>

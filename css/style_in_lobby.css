@@ -1,0 +1,35 @@
+header{
+	border-bottom:5px solid #181d21;
+	padding-bottom:0;
+}
+
+header p{
+	text-align:left;
+	padding-left:10px;
+}
+
+footer{
+	bottom:0;
+	display: inline-block;
+}
+
+textarea{
+	width:80%;
+	height:60px;
+	padding:0;
+	border:0;
+	vertical-align: bottom;
+	font-size: 25px;
+	background-color: #F6F6F6;
+}
+
+button{
+	width:20%;
+	height:60px;
+	padding:0;
+	border:0;
+	background-color: #26B8A3;
+	color:#F6F6F6;
+	cursor:pointer;
+	outline:0;
+}

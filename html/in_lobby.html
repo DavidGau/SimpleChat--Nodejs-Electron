@@ -3,16 +3,23 @@
 <head>
 	<title>Simple Chat | En cours...</title>
 	<meta charset="utf-8"/>
+	<link rel="stylesheet" type="text/css" href="../css/style_header_footer.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/style_in_lobby.css"/>
 </head>
 <body>
-	<h1 id="lobby_title">Titre du lobby</h1>
-	<p id="connected_list">Liste des personnes connectés</p>
-	<div id="message_container">
-	
-	</div>
-	<a href="lobby_list.html">Retourner à la liste des lobby</a>
-	<textarea id="textbox"></textarea>
-	<button id="submit">Envoi</button>
+	<header>
+		<h1 id="lobby_title">Titre du lobby</h1>
+		<p id="connected_list">Liste des personnes connectés</p>
+	</header>
+	<section>
+		<div id="message_container">
+		
+		</div>
+	</section>
+	<footer>
+		<!-- <a href="lobby_list.html">Retourner à la liste des lobby</a> -->
+		<textarea id="textbox"></textarea><button id="submit">Envoi</button>
+	</footer>
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.dev.js"></script>
 	<script>
@@ -31,6 +38,11 @@
 		submit.addEventListener("click",function(e){
 			e.preventDefault();
 			socket.emit("send_message",key,textbox.value);
+
+			let p = document.createElement("p");
+			p.innerHTML = "<strong>Vous: </strong>: " + textbox.value;
+
+			message_container.append(p);
 		},false);
 
 		

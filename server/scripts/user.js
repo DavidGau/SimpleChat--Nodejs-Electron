@@ -41,7 +41,7 @@ module.exports = {
 		let client_room = Object.keys(socket.rooms)[0];
 		let client_name = socket.nickname;
 
-		io.of("/in_lobby").to(client_room).emit("message",[{nickname: client_name,message: message}]);
+		socket.broadcast.to(client_room).emit("message",[{nickname: client_name,message: message}]);
 
 		console.log("emittitng message");
 	}

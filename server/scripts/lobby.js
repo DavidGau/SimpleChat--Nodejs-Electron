@@ -45,11 +45,12 @@ module.exports = {
 	//Charge les messages d'un lobby
 	load_message: function(socket,lobby_id){
 
-		let sql = "SELECT User.nickname,Message.message FROM Message INNER JOIN User ON Message.Id_user = User.Id WHERE Message.Id_lobby = ?";
-		let filler = [lobby_id];
+		let sql = "SELECT Message.message, REPLACE(User.nickname,?,'Vous') as nickname FROM Message INNER JOIN User ON Message.Id_user = User.Id WHERE Message.Id_lobby = ? ORDER BY Message.Id";
+		let filler = [socket.nickname,lobby_id];
 		sql = mysql.format(sql,filler);
-
+		console.log(sql);
 		db.query(sql,function(err,result){
+			console.log(err);
 			if(!err){
 				socket.emit("message",result);
 			}

@@ -3,15 +3,28 @@
 <head>
 	<title>Simple-tchat | Enregistrement</title>
 	<meta charset="utf-8"/>
+	<link rel="stylesheet" type="text/css" href="../css/style_header_footer.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/style_form.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/style_enregistrement.css"/>
+	<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
 </head>
 <body>
-	<form>
-		<input type="text" id="nickname" placeholder="pseudo"/>
-		<input type="password" id="password1" placeholder="password"/>
-		<input type="password" id="password2" placeholder="Retype password"/>
-		<input type="submit" id="submit"/>
-	</form>
-	<a href="./connexion.html" title="Connexion">Vers la page connexion</a>
+	<header>
+		<h1>Enregistrement</h1>
+		<p>Simple Chat</p>
+	</header>
+	<section>
+		<form>
+			<input type="text" id="nickname" placeholder="Pseudo"/>
+			<input type="password" id="password1" placeholder="Password"/>
+			<input type="password" id="password2" placeholder="Retype password"/>
+			<input type="submit" id="submit"/>
+		</form>
+	</section>
+	<footer>
+		<a href="./connexion.html" title="Connexion">Vers la page connexion</a>
+	</footer>
+
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.dev.js"></script>
 	<script>
 		console.log("loaded");
