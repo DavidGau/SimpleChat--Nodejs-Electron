@@ -29,17 +29,18 @@
 	<script>
 		let socket = io.connect("http://localhost:3000/register_lobby");
 		let key = sessionStorage.getItem("key");
-		socket.emit("key",key);
 
 		let submit = document.getElementById("submit");
 		let name = document.getElementById("name");
 
+		socket.emit("key",key);
+
+		//Lors du clique pour crée le lobby
 		submit.addEventListener("click",function(e){
 			e.preventDefault();
 
 			socket.emit("add_lobby",key,name.value);
-
-			name.value = "";
+			
 			document.location.href = "lobby_list.html";
 		},false);
 	</script>

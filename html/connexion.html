@@ -37,6 +37,7 @@
 		let name = document.getElementById("name");
 		let password = document.getElementById("password");
 
+		//Lors du clique pour se connecter
 		submit.addEventListener("click",function(e){
 			e.preventDefault();
 
@@ -44,7 +45,7 @@
 
 		});
 
-
+		//Lors de la réponse du serveur si oui ou non on est connected
 		socket.on("answer",function(answer){
 
 			if(answer){

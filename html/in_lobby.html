@@ -43,6 +43,9 @@
 		let lobby_id = new URLSearchParams(window.location.search);
 		lobby_id = lobby_id.get("Id");
 
+		socket.emit("changed_lobby",key,lobby_id);
+
+		//Lorsque l'on envoi le message
 		submit.addEventListener("click",function(e){
 			e.preventDefault();
 			socket.emit("send_message",key,textbox.value);
@@ -55,17 +58,12 @@
 			textbox.value = "";
 		},false);
 
-		socket.emit("changed_lobby",key,lobby_id);
-
-		submit.addEventListener("click",function(e){
-			e.preventDefault();
-		},false);
-
-
+		//Pour recevoir le titre du lobby
 		socket.on("title",function(result){
 			title.innerHTML = result[0].Name;
 		});
 
+		//Pour recevoir la liste des membres du lobby
 		socket.on("member_list",function(result){
 
 			let str = '';
@@ -78,6 +76,7 @@
 			connected_list.innerHTML = str;
 		});
 
+		//Pour recevoir les messages
 		socket.on("message",function(result){
 			result.forEach(function(el){
 				let p = document.createElement("p");
@@ -88,6 +87,8 @@
 			});
 		});
 		
+
+		//Seulement car lorsqu le client envoi un msg, on l'append immédiatement sans passer par le server donc -> pas de specialchars
 		function escape_html(str)
 		{
 		    var map =

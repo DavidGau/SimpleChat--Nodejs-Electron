@@ -53,6 +53,7 @@
 			password2.value = "";
 		},false);
 
+		//Lors de la réponse du serveur si oui/non l'enregistrement a fonctionnée
 		socket.on("registered",function(answer){
 			if(answer){
 				document.location.href = "connexion.html";
