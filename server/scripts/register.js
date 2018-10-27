@@ -20,7 +20,7 @@ module.exports = function(name,password,socket){
 			filler = [name,hash];
 			sql = mysql.format(sql,filler);
 
-			db.query(sql,function(err,result){console.log(err);});
+			db.query(sql,function(err,result){});
 			
 			if(!err){
 				socket.emit("registered",true);

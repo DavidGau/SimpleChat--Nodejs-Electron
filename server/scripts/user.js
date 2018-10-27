@@ -1,6 +1,7 @@
 const connection = require("./connection.js");
 const mysql = require("mysql");
 const db = require("./db_connection.js");
+const htmlspecialchars = require('htmlspecialchars');
 
 module.exports = {
 
@@ -31,7 +32,7 @@ module.exports = {
 		sql = mysql.format(sql,filler);
 
 		db.query(sql,function(err){
-			console.log(err);
+
 		});
 	},
 
@@ -41,9 +42,7 @@ module.exports = {
 		let client_room = Object.keys(socket.rooms)[0];
 		let client_name = socket.nickname;
 
-		socket.broadcast.to(client_room).emit("message",[{nickname: client_name,message: message}]);
-
-		console.log("emittitng message");
+		socket.broadcast.to(client_room).emit("message",[{nickname: htmlspecialchars(client_name),message: htmlspecialchars(message)}]);
 	}
 
 }

@@ -48,14 +48,13 @@
 			socket.emit("send_message",key,textbox.value);
 
 			let p = document.createElement("p");
-			p.innerHTML = "<strong>Vous</strong>: " + textbox.value;
+			p.innerHTML = "<strong>Vous</strong>: " + escape_html(textbox.value);
 			p.classList.add("bubble_own");
 
 			message_container.append(p);
 			textbox.value = "";
 		},false);
 
-		
 		socket.emit("changed_lobby",key,lobby_id);
 
 		submit.addEventListener("click",function(e){
@@ -88,7 +87,20 @@
 				message_container.append(p);
 			});
 		});
-
+		
+		function escape_html(str)
+		{
+		    var map =
+		    {
+		        '&': '&amp;',
+		        '<': '&lt;',
+		        '>': '&gt;',
+		        '"': '&quot;',
+		        "'": '&#039;'
+		    };
+		    return str.replace(/[&<>"']/g, function(m) {return map[m];});
+		}
+		
 
 	</script>	
 </body>

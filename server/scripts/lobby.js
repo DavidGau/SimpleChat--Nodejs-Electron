@@ -1,5 +1,7 @@
 const mysql = require("mysql");
 const db = require("./db_connection.js");
+const escape_chars = require("./escape_chars");
+const htmlspecialchars = require('htmlspecialchars');
 
 module.exports = {
 
@@ -9,7 +11,9 @@ module.exports = {
 		let sql = "SELECT * FROM Lobby";
 
 		db.query(sql,function(err,result){
+
 			if(!err){
+				result = escape_chars.escape(result);
 				socket.emit("list",result);
 			}
 		});
@@ -37,6 +41,7 @@ module.exports = {
 
 		db.query(sql,function(err,result){
 			if(!err){
+				result = escape_chars.escape(result);
 				socket.emit("title",result);
 			}
 		});
@@ -48,10 +53,11 @@ module.exports = {
 		let sql = "SELECT Message.message, REPLACE(User.nickname,?,'Vous') as nickname FROM Message INNER JOIN User ON Message.Id_user = User.Id WHERE Message.Id_lobby = ? ORDER BY Message.Id";
 		let filler = [socket.nickname,lobby_id];
 		sql = mysql.format(sql,filler);
-		console.log(sql);
+		
 		db.query(sql,function(err,result){
-			console.log(err);
+			
 			if(!err){
+				result = escape_chars.escape(result);
 				socket.emit("message",result);
 			}
 		});
@@ -74,7 +80,7 @@ module.exports = {
 
 			for(let i = 0; i < room_sockets.length;i++)
 			{	
-				let nickname = io.nsps["/in_lobby"].connected[room_sockets[i]].nickname;
+				let nickname = htmlspecialchars(io.nsps["/in_lobby"].connected[room_sockets[i]].nickname);
 				member_list.push(nickname);
 			}
 			
