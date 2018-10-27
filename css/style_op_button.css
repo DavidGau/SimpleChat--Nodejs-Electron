@@ -1,0 +1,30 @@
+header div{
+	position:absolute;
+	top:7px;
+	right:10px;
+	width:100%;
+	text-align:right;
+	-webkit-app-region: drag;
+}
+
+header div button{
+	width:35px;
+	height:35px;
+	background-color:transparent;
+	border:3px solid #C53960;
+	border-radius: 20px;
+	color:#F6F6F6;
+	outline:0;
+	transition-duration: 1s;
+	cursor:pointer;
+	-webkit-app-region: no-drag;
+}
+
+header div button:hover{
+	color:white;
+}
+
+#btn_previous{
+	position: absolute;
+	left:17px;
+}

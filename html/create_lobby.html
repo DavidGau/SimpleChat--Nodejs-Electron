@@ -5,10 +5,17 @@
 	<meta charset="utf-8"/>
 	<link rel="stylesheet" type="text/css" href="../css/style_form.css"/>
 	<link rel="stylesheet" type="text/css" href="../css/style_header_footer.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/style_op_button.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/style_create_lobby.css"/>
 	<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
 </head>
 <body>
 	<header>
+		<div>
+			<button id="btn_previous" onclick="document.location.href='./lobby_list.html'"><-</button>
+			<button id="btn_min">-</button>
+			<button id="btn_close">X</button>
+		</div>
 		<h1>Nouveau lobby</h1>
 		<p>Simple Chat</p>
 	</header>
@@ -17,10 +24,12 @@
 		<input type="submit" id="submit"/>
 	</form>
 
+	<script src="../script/window_control.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.dev.js"></script>
 	<script>
-		let socket = io.connect("http://localhost:3000/lobby_list");
+		let socket = io.connect("http://localhost:3000/register_lobby");
 		let key = sessionStorage.getItem("key");
+		socket.emit("key",key);
 
 		let submit = document.getElementById("submit");
 		let name = document.getElementById("name");

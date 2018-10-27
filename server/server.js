@@ -10,6 +10,7 @@ const user = require("./scripts/user.js");
 //Les différents namespaces pour les sockets
 const register_nsp = io.of("/register");
 const connection_nsp = io.of("/connection");
+const register_lobby_nsp = io.of("/register_lobby");
 const lobby_list_nsp = io.of("/lobby_list");
 const in_lobby_nsp = io.of("/in_lobby");
 
@@ -60,6 +61,14 @@ lobby_list_nsp.on("connection",function(socket){
 		}
 
 	});
+});
+
+//Namespace pour la création de lobby
+register_lobby_nsp.on("connection",function(socket){
+
+	socket.on("key",function(key){ //Sans cela, l'app perd la trace du client lors de la vérif d'authenticité
+		connection.valid(key,socket.id);
+	});
 
 	//Crée un lobby dans la DB
 	socket.on("add_lobby",function(key,name){
@@ -69,9 +78,10 @@ lobby_list_nsp.on("connection",function(socket){
 		}
 
 	});
+
 });
 
-//Namespace pour la présence dans un lo
+//Namespace lorsque dans un lobby
 in_lobby_nsp.on("connection",function(socket){
 	
 

@@ -5,10 +5,15 @@
 	<meta charset="utf-8"/>
 	<link rel="stylesheet" type="text/css" href="../css/style_header_footer.css"/>
 	<link rel="stylesheet" type="text/css" href="../css/style_lobby_list.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/style_op_button.css"/>
 	<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
 </head>
 <body>
 	<header>
+		<div>
+			<button id="btn_min">-</button>
+			<button id="btn_close">X</button>
+		</div>
 		<h1>Liste des lobby</h1>
 		<p>Simple Chat</p>
 	</header>
@@ -18,6 +23,7 @@
 		<a href="create_lobby.html">Crée un lobby</a>
 	</footer>
 
+	<script src="../script/window_control.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.dev.js"></script>
 	<script>
 		let socket = io.connect("http://localhost:3000/lobby_list");
