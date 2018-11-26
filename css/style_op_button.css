@@ -21,7 +21,8 @@ header div button{
 }
 
 header div button:hover{
-	color:white;
+	background-color: #C53960;
+	border-color: #2F3D46;
 }
 
 #btn_previous{
